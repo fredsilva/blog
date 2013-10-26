@@ -1,4 +1,14 @@
 {% extends "base.html" %}
+{% block pesquisa %}
+    <form class="navbar-form navbar-right" action="" method="get" name="form_pesquisa">
+    {% csrf_token %}
+    {{ form.as_p }}
+        <div class="form-group">
+            <input type="text" placeholder="Pesquisa" class="form-control" name="search">
+        </div>
+        <button type="submit" class="btn btn-success">Pesquisar</button>
+    </form>
+{% endblock %}
 {% block content %}
     <div class="row">
         {% for post in posts %}
@@ -8,6 +18,21 @@
           <h5><small>{{ post.date }}</small></h5>
           <p><a class="btn btn-default" href="post/{{ post.pk }}">Leia mais &raquo;</a></p>
         </div>
+        {% empty %}
+          <h2>Nenhum resultado encontrado.</h2>
         {% endfor %}
     </div>
+    <ul class="pager">
+           <li>
+               {% if posts.has_previous %}
+               <a href="?page={{ posts.previous_page_number }}" ><< Anterior</a>
+               {% endif %}
+           </li>
+           <li>
+               {% if posts.has_next %}
+               <a href="?page={{ posts.next_page_number }}">Próximo >></a>
+               {% endif %}
+           </li>
+           <div>Página {{ posts.number }} de {{posts.paginator.num_pages }}</div>
+       </ul>
 {% endblock %}

@@ -26,7 +26,6 @@
   <body>
 
     <div class="navbar navbar-inverse navbar-fixed-top">
-      {% block menu %}
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -48,9 +47,9 @@
               </ul>
             </li>
           </ul>
+          {% block pesquisa %}{% endblock %}
         </div><!--/.navbar-collapse -->
       </div>
-      {% endblock %}
     </div>
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
