@@ -5,8 +5,6 @@ TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     ('Frederico da Silva Santos', 'fredsilva.sistemas@gmail.com'),
-    ('Sávio Dias', 'diasssavio@gmail.com'),
-    ('Pedro Reis', 'phsmreis@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -122,6 +120,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'Blog.core',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
