@@ -1,7 +1,7 @@
 # encoding: utf-8
-from django.shortcuts import render, get_object_or_404
-from models import Post
-from forms import CommentForm
+from django.shortcuts import render, get_object_or_404, redirect
+from models import Post, Comment
+from forms import CommentForm, CommentEditForm
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -42,3 +42,19 @@ def post_detail(request, pk):
         form = CommentForm()
     context['form'] = form
     return render(request, 'post_detail.html', context)
+
+def comment_edit(request, pk_post, pk_comment):
+    queryset = Comment.objects.all()
+    comment = get_object_or_404(queryset, pk=pk_comment)
+    context = {}
+    context['comment'] = comment
+    if request.method == 'POST':
+        form = CommentEditForm(request.POST, instance=comment)
+        if form.is_valid():
+            form.save()
+            context['form'] = CommentEditForm(instance=comment)
+            return redirect('post_detail',pk=pk_post)
+    else:
+        form = CommentEditForm(instance=comment)
+    context['form'] = form
+    return render(request, 'comment_edit.html',context)

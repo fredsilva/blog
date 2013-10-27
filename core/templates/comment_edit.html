@@ -1,23 +1,7 @@
 {% extends "base.html" %}
 {% block head %}{% endblock %}
 {% block content %}
-<h2>{{ post.title }}</h2>
-<p>{{ post.content }}</p>
-<h5><small>{{ post.date }}</small></h5>
-<h5>Autor: <small>{{ post.author.first_name }} {{ post.author.last_name }}</small></h5>
-<hr>
-<h3>Comentários</h3>
-{% for comment in post.comments.all %}
-    <p>
-    {{ comment.content }}
-    </p>
-    <h5>Autor: <small>{{ comment.author }} - {{ comment.email }}</small></h5>
-    <h5>Data: <small>{{ comment.date|date:'d/m/Y' }}</small></h5>
-    <a href="edit-comment/{{ comment.pk }}">Editar</a>
-    <hr>
-{% endfor %}
-<br>
-<h3>Envie um comentário</h3>
+<h3>Edite o comentário</h3>
 <form action="" method="post">
 {% csrf_token %}
 {% for field in form.visible_fields %}
@@ -38,6 +22,6 @@
 {% for field in form.hidden_fields %}
     {{ field }}
 {% endfor %}
-    <button type="submit" class="btn btn-success">Enviar</button>
+    <button type="submit" class="btn btn-success">Salvar</button>
 </form>
 {% endblock %}
