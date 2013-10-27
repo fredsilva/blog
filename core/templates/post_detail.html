@@ -14,6 +14,7 @@
     <h5>Autor: <small>{{ comment.author }} - {{ comment.email }}</small></h5>
     <h5>Data: <small>{{ comment.date|date:'d/m/Y' }}</small></h5>
     <a href="edit-comment/{{ comment.pk }}">Editar</a>
+    <a href="remove-comment/{{ comment.pk }}">Excluir</a>
     <hr>
 {% endfor %}
 <br>

@@ -11,7 +11,7 @@ def home(request):
     if search:
         posts = posts.filter(Q(title__icontains=search) | Q(content__icontains=search))
     #paginação
-    paginator = Paginator(posts,3)
+    paginator = Paginator(posts,1)
     page = request.GET.get('page')
     try:
         posts = paginator.page(page)
